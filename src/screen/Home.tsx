@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Articulo } from '../interfaces';
 import { AddItem } from '../components/AddItem';
 import { ListItem } from '../components/ListItem/index';
 import { useHome } from '../hooks/useHome';
