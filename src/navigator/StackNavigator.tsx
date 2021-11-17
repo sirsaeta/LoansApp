@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Prestamo } from '../interfaces';
-import { DetailsLoansScreen, HomeScreen, ListLoansScreen, LoginScreen, NotificationsScreen, ProfileScreen, SettingsScreen } from '../screens';
+import { DetailsLoansScreen, ListLoansScreen, LoginScreen, NotificationsScreen, SettingsScreen } from '../screens';
 import { AuthContext } from '../context/AuthContext';
+import { BottomTabNavigator } from './BottomTabNavigator';
 
 export type RootStackParams = {
   Home: undefined,
@@ -12,6 +13,7 @@ export type RootStackParams = {
   ListLoans: undefined,
   DetailsLoans: Prestamo,
   Login: undefined,
+  BottomTabNavigator: undefined,
 }
 
 const Stack = createStackNavigator<RootStackParams>();
@@ -25,13 +27,12 @@ export const StackNavigator = () => {
         screenOptions={{
           header: () => null,
           cardStyle: {
-            backgroundColor: "#121212",
+            backgroundColor: "#121212"
           }
         }}
       >
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="BottomTabNavigator" component={BottomTabNavigator} />
         <Stack.Screen name="Notifications" component={NotificationsScreen} />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen name="ListLoans" component={ListLoansScreen} />
         <Stack.Screen name="DetailsLoans" component={DetailsLoansScreen} />

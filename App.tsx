@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme as DefaultNavigation } from '@react-navigation/native';
 import { StackNavigator } from './src/navigator/StackNavigator';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
@@ -24,8 +24,17 @@ const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: 'tomato',
+    primary: 'aqua',
     accent: 'yellow',
+  },
+};
+
+const MyTheme = {
+  ...DefaultNavigation,
+  colors: {
+    ...DefaultNavigation.colors,
+    primary: 'rgb(255, 45, 85)',
+    background: 'rgb(25, 25, 25)',
   },
 };
 
@@ -40,7 +49,7 @@ export default function App() {
 
   if (!loaded) return <AppLoading />;
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={MyTheme} >
       <StatusBar hidden={false} translucent={false} style="inverted" />
       <PaperProvider theme={theme}>
         <AppState>
