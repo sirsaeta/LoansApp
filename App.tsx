@@ -5,6 +5,20 @@ import { StackNavigator } from './src/navigator/StackNavigator';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import { AuthProvider } from './src/context/AuthContext';
+import { GradientProvider } from './src/context/GradientContext';
+
+
+export const AppState = ({ children }: any) => {
+
+  return (
+    <AuthProvider>
+      <GradientProvider>
+        {children}
+      </GradientProvider>
+    </AuthProvider>
+  )
+}
 
 const theme = {
   ...DefaultTheme,
@@ -26,11 +40,13 @@ export default function App() {
 
   if (!loaded) return <AppLoading />;
   return (
-      <NavigationContainer>
-        <StatusBar hidden={false} translucent={false} style="inverted" />
-        <PaperProvider theme={theme}>
+    <NavigationContainer>
+      <StatusBar hidden={false} translucent={false} style="inverted" />
+      <PaperProvider theme={theme}>
+        <AppState>
           <StackNavigator />
-        </PaperProvider>
-      </NavigationContainer>
+        </AppState>
+      </PaperProvider>
+    </NavigationContainer>
   );
 }
