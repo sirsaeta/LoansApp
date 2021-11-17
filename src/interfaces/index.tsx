@@ -1,11 +1,15 @@
-
-
-export type PropsItem = {
-    item: Articulo;
-    accion: ()=>void;
-}
-
 export type Articulo = {
     id: number;
     value: string;
+}
+
+export interface Prestamo {
+    id: number;
+    value: string;
+}
+
+export interface PropsItem {
+    item: Prestamo;
+    accion: ()=>void;
+    accionDetail: (params:Prestamo)=>void;
 }

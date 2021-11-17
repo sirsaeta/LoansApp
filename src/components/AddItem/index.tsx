@@ -1,33 +1,38 @@
 import React, { useState } from 'react';
-import { View,  TextInput, Button } from 'react-native';
-import { Articulo } from '../../interfaces';
+import { View, TouchableOpacity } from 'react-native';
+import { Prestamo } from '../../interfaces';
+import { ContainerTextInput } from '../Form/ContainerTextInput';
+import { Ionicons } from '@expo/vector-icons';
 
 type Props = {
-    setArticulos: React.Dispatch<React.SetStateAction<Articulo[]>>;
-    articulos: Articulo[];
+    setPrestamos: React.Dispatch<React.SetStateAction<Prestamo[]>>;
+    prestamos: Prestamo[];
 }
 
-export const AddItem = ({setArticulos, articulos}:Props) => {
+export const AddItem = ({setPrestamos, prestamos}:Props) => {
     const [text, onChangeText] = useState("");
     
     return (
-    <View style={{flexDirection:"row"}}>
-        <TextInput 
-            style={{
-                borderBottomColor: "white",
-                borderBottomWidth: 1,
-                width: "80%",
-                marginRight: 10,
-                color: "white",
-            }}
+    <View style={{flexDirection: "row", justifyContent: "space-around", alignItems: "center"}} >
+        <View style={{width: "90%"}} >
+        <ContainerTextInput
+            label ="Prestamo"
             onChangeText={onChangeText}
-            placeholder="Articulo a buscar"
             value={text}
         />
-        <Button title="ADD" onPress={()=> setArticulos([...articulos,{
-            id: articulos.length+1,
-            value: text
-        }]) } />
+        </View>
+        <TouchableOpacity onPress={()=> {
+            if (text.length>0) {
+                setPrestamos([...prestamos,{
+                    id: prestamos.length+1,
+                    value: text
+                }]); 
+                onChangeText("") ;
+            }
+            else return
+        }}>
+            <Ionicons name="add" color="white" size={25} />
+        </TouchableOpacity>
     </View>
     )
 }

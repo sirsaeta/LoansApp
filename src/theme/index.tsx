@@ -66,7 +66,8 @@ export const styles = StyleSheet.create({
     textBase: {
         fontSize: 14,
         color: colors.white[100],
-        margin: 5
+        margin: 5,
+        fontFamily: "Vollkorn",
     },
     textTitle: {
         color: colors.white[100],

@@ -1,15 +1,15 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Home } from '../screen/Home';
-import { Notifications } from '../screen/Notifications';
-import { Profile } from '../screen/Profile';
-import { Settings } from '../screen/Settings';
+import { Prestamo } from '../interfaces';
+import { DetailsLoansScreen, HomeScreen, ListLoansScreen, NotificationsScreen, ProfileScreen, SettingsScreen } from '../screens';
 
 export type RootStackParams = {
     Home:           undefined,
     Notifications:  undefined,
     Profile:        undefined,
     Settings:       undefined,
+    ListLoans:      undefined,
+    DetailsLoans:   Prestamo,
 }
 
 const Stack = createStackNavigator<RootStackParams>();
@@ -17,16 +17,19 @@ const Stack = createStackNavigator<RootStackParams>();
 export const StackNavigator = () => {
   return (
     <Stack.Navigator
-    screenOptions={{
-      header:()=>null,
-      cardStyle: {
-          backgroundColor:"#121212",
-      }
-    }}>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Notifications" component={Notifications} />
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Settings" component={Settings} />
+      screenOptions={{
+        header:()=>null,
+        cardStyle: {
+            backgroundColor:"#121212",
+        }
+      }}
+    >
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Notifications" component={NotificationsScreen} />
+      <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="Settings" component={SettingsScreen} />
+      <Stack.Screen name="ListLoans" component={ListLoansScreen} />
+      <Stack.Screen name="DetailsLoans" component={DetailsLoansScreen} />
     </Stack.Navigator>
   );
 }
