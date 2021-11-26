@@ -7,6 +7,8 @@ import AppLoading from 'expo-app-loading';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { AuthProvider } from './src/context/AuthContext';
 import { GradientProvider } from './src/context/GradientContext';
+import { Provider } from 'react-redux';
+import store from './src/store';
 
 
 export const AppState = ({ children }: any) => {
@@ -49,13 +51,15 @@ export default function App() {
 
   if (!loaded) return <AppLoading />;
   return (
-    <NavigationContainer theme={MyTheme} >
-      <StatusBar hidden={false} translucent={false} style="inverted" />
-      <PaperProvider theme={theme}>
-        <AppState>
-          <StackNavigator />
-        </AppState>
-      </PaperProvider>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer theme={MyTheme} >
+        <StatusBar hidden={false} translucent={false} style="inverted" />
+        <PaperProvider theme={theme}>
+          <AppState>
+            <StackNavigator />
+          </AppState>
+        </PaperProvider>
+      </NavigationContainer>
+    </Provider>
   );
 }

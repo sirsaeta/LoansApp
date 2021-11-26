@@ -44,3 +44,8 @@ export type AuthAction = {
     type: 'login',
     payload: AuthState
 };
+
+export type TypeLoan = {
+    value: string;
+    label: string;
+}
